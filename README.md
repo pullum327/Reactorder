@@ -24,10 +24,11 @@
 - **多斷點支持**：1200px, 992px, 768px, 480px, 360px
 - **移動端優化**：觸摸友好、滾動優化
 - **橫屏適配**：針對橫屏設備的特殊布局
-- **高分辨率支持**：4K屏幕的優化顯示
 
 ---
 
 <img width="763" height="916" alt="image" src="https://github.com/user-attachments/assets/99c58cfb-a756-44a7-9311-5a3af131af74" />
 
 <img width="1872" height="936" alt="image" src="https://github.com/user-attachments/assets/d3c15b21-3366-4ec0-9744-7e14fd720b05" />
+<img width="1557" height="614" alt="image" src="https://github.com/user-attachments/assets/12160648-1b61-4d8a-ab95-a8d60fb78001" />
+
