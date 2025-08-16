@@ -1,12 +1,33 @@
-# React + Vite
+# 🛒 React Order System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一個簡單的 **下單系統**，使用 **React (前端)**、**Node.js + Express (後端)**、**MySQL (資料庫)**，並整合 **SendGrid** 於下單後自動寄送訂單確認信給客戶。
 
-Currently, two official plugins are available:
+## ✨ 功能特色
+- 📦 **商品列表**：從 MySQL 資料庫讀取，動態顯示商品名稱、價格、庫存與圖片  
+- 🛍 **購物車功能**：新增、修改數量、移除商品、清空購物車  
+- 👤 **會員系統**：註冊、登入（JWT Token 驗證）、取得個人資訊  
+- 💌 **訂單寄信**：使用 SendGrid API 寄送訂單確認信到客戶填寫的 Email  
+- 🖥 **響應式設計**：適配各種裝置螢幕  
+- 🔒 **密碼加密儲存**：使用 bcrypt 將使用者密碼加密存入資料庫  
+- 💳 **Stripe支付整合**：支援信用卡付款、貨到付款、銀行轉帳等多種支付方式
+- 📱 **全面響應式**：完美適配桌面、平板、手機等各種設備
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 新增功能
 
-## Expanding the ESLint configuration
+### Stripe支付系統
+- **信用卡付款**：整合Stripe API，支援安全信用卡支付
+- **多種支付方式**：信用卡、貨到付款、銀行轉帳
+- **響應式支付界面**：優雅的支付流程設計
+- **HKD貨幣支持**：預設使用港幣作為交易貨幣
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 響應式設計優化
+- **多斷點支持**：1200px, 992px, 768px, 480px, 360px
+- **移動端優化**：觸摸友好、滾動優化
+- **橫屏適配**：針對橫屏設備的特殊布局
+- **高分辨率支持**：4K屏幕的優化顯示
+
+---
+
+<img width="763" height="916" alt="image" src="https://github.com/user-attachments/assets/99c58cfb-a756-44a7-9311-5a3af131af74" />
+
+<img width="1872" height="936" alt="image" src="https://github.com/user-attachments/assets/d3c15b21-3366-4ec0-9744-7e14fd720b05" />

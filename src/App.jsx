@@ -21,9 +21,6 @@ function Login({ onLogin, switchToRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [buyer, setBuyer] = useState({
-  name: "", phone: "", address: "", payment: "credit", email: ""
-});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,40 +34,40 @@ function Login({ onLogin, switchToRegister }) {
   };
 
   return (
-  <div className="auth-scope">     {/* ← 新增這層 wrapper */}
-    <div className="auth-page">
-      <div className="auth-illustration"><div className="glow" /></div>
+    <div className="auth-scope">
+      <div className="auth-page">
+        <div className="auth-illustration"><div className="glow" /></div>
 
-      <div className="auth-card">
-        <div className="auth-brand">
-          <div className="auth-logo">🔒</div>
-          <h2 className="auth-title">會員登入</h2>
-          <p className="auth-subtitle">請輸入帳號密碼</p>
+        <div className="auth-card">
+          <div className="auth-brand">
+            <div className="auth-logo">🔒</div>
+            <h2 className="auth-title">會員登入</h2>
+            <p className="auth-subtitle">請輸入帳號密碼</p>
+          </div>
+
+          {error && <p className="auth-alert">{error}</p>}
+
+          <form onSubmit={handleSubmit} className="auth-form">
+            <div>
+              <label className="auth-label">Email</label>
+              <input className="auth-input" type="email" value={email}
+                     onChange={(e) => setEmail(e.target.value)} required />
+            </div>
+            <div>
+              <label className="auth-label">密碼</label>
+              <input className="auth-input" type="password" value={password}
+                     onChange={(e) => setPassword(e.target.value)} required />
+            </div>
+            <button type="submit" className="auth-btn">登入</button>
+          </form>
+
+          <p className="auth-switch">
+            還沒有帳號？<button onClick={switchToRegister} className="auth-link">立即註冊</button>
+          </p>
         </div>
-
-        {error && <p className="auth-alert">{error}</p>}
-
-        <form onSubmit={handleSubmit} className="auth-form">
-          <div>
-            <label className="auth-label">Email</label>
-            <input className="auth-input" type="email" value={email}
-                   onChange={(e) => setEmail(e.target.value)} required />
-          </div>
-          <div>
-            <label className="auth-label">密碼</label>
-            <input className="auth-input" type="password" value={password}
-                   onChange={(e) => setPassword(e.target.value)} required />
-          </div>
-          <button type="submit" className="auth-btn">登入</button>
-        </form>
-
-        <p className="auth-switch">
-          還沒有帳號？<button onClick={switchToRegister} className="auth-link">立即註冊</button>
-        </p>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 // 註冊表單
@@ -108,42 +105,36 @@ function Register({ onRegister, switchToLogin }) {
 
       {error && <div className="auth-alert" role="alert">{error}</div>}
 
-      <form onSubmit={submit} className="auth-form">
+      <form onSubmit={handleSubmit} className="auth-form">
         <label className="auth-label">姓名</label>
         <input className="auth-input" value={name} onChange={(e)=>setName(e.target.value)} required />
 
         <label className="auth-label">Email</label>
-        <input type="email" className="auth-input" value={email} onChange={(e)=>setEmail(e.target.value)} required />
+        <input className="auth-input" type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required />
 
         <label className="auth-label">密碼</label>
-        <input type="password" className="auth-input" value={password} onChange={(e)=>setPassword(e.target.value)} required />
+        <input className="auth-input" type="password" value={password} onChange={(e)=>setPassword(e.target.value)} required />
 
         <label className="auth-label">確認密碼</label>
-        <input type="password" className="auth-input" value={confirm} onChange={(e)=>setConfirm(e.target.value)} required />
+        <input className="auth-input" type="password" value={confirm} onChange={(e)=>setConfirm(e.target.value)} required />
 
-        <button type="submit" className="auth-btn" disabled={loading}>
-          {loading ? "送出中…" : "建立帳號"}
-        </button>
+        <button type="submit" className="auth-btn">註冊</button>
       </form>
 
       <p className="auth-switch">
-        已有帳號？
-        <button onClick={switchToLogin} className="auth-link"> 前往登入</button>
+        已有帳號？<button onClick={switchToLogin} className="auth-link">立即登入</button>
       </p>
     </div>
   );
 }
 
-export default function App() {
-  // 使用者登入狀態
+// 主應用
+function App() {
   const [user, setUser] = useState(null);
-  // 切換登入/註冊
   const [showRegister, setShowRegister] = useState(false);
-
-  // 商品 & 購物車
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart") || "[]"));
-  const [buyer, setBuyer] = useState({ name: "", phone: "", address: "", payment: "credit" });
+  const [buyer, setBuyer] = useState({ name: "", phone: "", address: "", payment: "credit", email: "" });
   const [placing, setPlacing] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [showPayment, setShowPayment] = useState(false);
@@ -187,14 +178,16 @@ export default function App() {
       return [...prev, { id: p.id, name: p.name, price: p.price, qty: 1, stock: p.stock }];
     });
   }
+  
   function updateQty(id, qty) {
     setCart((prev) => prev
       .map((x) => (x.id === id ? { ...x, qty: Math.min(Math.max(qty, 1), x.stock) } : x))
       .filter((x) => x.qty > 0));
   }
+  
   function removeItem(id) { setCart((prev) => prev.filter((x) => x.id !== id)); }
   function clearCart() { setCart([]); }
-  function clearCart() { /* 同前 */ }
+  
   async function placeOrder(e) {
     e.preventDefault();
     if (!cart.length) return alert("購物車是空的");
@@ -242,7 +235,6 @@ export default function App() {
     setShowPayment(false);
   }
 
-
   // 尚未登入：顯示登入或註冊
   if (!user) {
     return showRegister ? (
@@ -253,7 +245,7 @@ export default function App() {
   }
 
   // 已登入：下單頁面
-    return (
+  return (
     <div className="app">
       <header className="header">
         <div className="container header-bar">
@@ -307,32 +299,37 @@ export default function App() {
             {cart.map((it) => (
               <div key={it.id} className="line">
                 <div>
-                  <div className="line-name">{it.name}</div>
-                  <div className="line-price">{currency(it.price)}</div>
+                  <h4>{it.name}</h4>
+                  <p className="muted">{currency(it.price)} × {it.qty}</p>
                 </div>
-                <div className="line-actions">
-                  <input
-                    type="number"
-                    min={1}
-                    max={it.stock}
-                    value={it.qty}
-                    onChange={(e) =>
-                      updateQty(it.id, Number(e.target.value))
-                    }
-                    className="input qty"
-                  />
+                <div className="actions">
+                  <button
+                    onClick={() => updateQty(it.id, it.qty - 1)}
+                    className="btn btn-sm"
+                    disabled={it.qty <= 1}
+                  >
+                    -
+                  </button>
+                  <span className="qty">{it.qty}</span>
+                  <button
+                    onClick={() => updateQty(it.id, it.qty + 1)}
+                    className="btn btn-sm"
+                    disabled={it.qty >= it.stock}
+                  >
+                    +
+                  </button>
                   <button
                     onClick={() => removeItem(it.id)}
-                    className="link link-danger"
+                    className="btn btn-sm btn-danger"
                   >
                     移除
                   </button>
                 </div>
               </div>
             ))}
-            {!!cart.length && (
+            {cart.length > 0 && (
               <div className="summary">
-                <div className="summary-label">小計</div>
+                <div className="summary-label">總計</div>
                 <div className="summary-value">{currency(total)}</div>
               </div>
             )}
@@ -350,62 +347,63 @@ export default function App() {
           <h2 className="section-title">結帳</h2>
           <form onSubmit={placeOrder} className="card form">
             <div className="form-group">
-          <label className="label">收件人姓名</label>
-          <input
-            value={buyer.name}
-            onChange={(e) => setBuyer({ ...buyer, name: e.target.value })}
-            className="input"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label className="label">電話</label>
-          <input
-            value={buyer.phone}
-            onChange={(e) => setBuyer({ ...buyer, phone: e.target.value })}
-            className="input"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label className="label">Email</label>
-          <input type="email"
-            value={buyer.email}
-            onChange={(e) => setBuyer({ ...buyer, email: e.target.value })}
-            className="input"
-            required />
-        </div>
-        <div className="form-group">
-          <label className="label">地址</label>
-          <textarea
-            value={buyer.address}
-            onChange={(e) => setBuyer({ ...buyer, address: e.target.value })}
-            className="input"
-            rows={2}
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          disabled={placing || !cart.length}
-          className="btn btn-block btn-primary"
-        >
-          {placing ? "處理中…" : "繼續付款"}
-        </button>
-        {orderId && <p className="hint-success">訂單建立成功：{orderId}</p>}
-      </form>
-
-      {/* 支付流程 */}
-      {showPayment && (
-        <PaymentFlow
-          amount={total}
-          onPaymentSuccess={processPayment}
-          onPaymentCancel={handlePaymentCancel}
-        />
-      )}
-                </section>
-              </main>
+              <label className="label">收件人姓名</label>
+              <input
+                value={buyer.name}
+                onChange={(e) => setBuyer({ ...buyer, name: e.target.value })}
+                className="input"
+                required
+              />
             </div>
-          );
-        }
+            <div className="form-group">
+              <label className="label">電話</label>
+              <input
+                value={buyer.phone}
+                onChange={(e) => setBuyer({ ...buyer, phone: e.target.value })}
+                className="input"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label className="label">Email</label>
+              <input type="email"
+                value={buyer.email}
+                onChange={(e) => setBuyer({ ...buyer, email: e.target.value })}
+                className="input"
+                required />
+            </div>
+            <div className="form-group">
+              <label className="label">地址</label>
+              <textarea
+                value={buyer.address}
+                onChange={(e) => setBuyer({ ...buyer, address: e.target.value })}
+                className="input"
+                rows={2}
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={placing || !cart.length}
+              className="btn btn-block btn-primary"
+            >
+              {placing ? "處理中…" : "繼續付款"}
+            </button>
+            {orderId && <p className="hint-success">訂單建立成功：{orderId}</p>}
+          </form>
 
+          {/* 支付流程 */}
+          {showPayment && (
+            <PaymentFlow
+              amount={total}
+              onPaymentSuccess={processPayment}
+              onPaymentCancel={handlePaymentCancel}
+            />
+          )}
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default App;
