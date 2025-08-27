@@ -1,0 +1,254 @@
+
+/* 基礎布局 */
+.scale-container {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0b1020; /* 預設背景色，可自改 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:root {
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --radius: 1rem;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial; color: #111827; background: #f9fafb; }
+
+
+.container {
+ width: min(92vw, 1280px);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.9); backdrop-filter: blur(6px); border-bottom: 1px solid #e5e7eb; }
+.header-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+.title { font-size: 20px; font-weight: 700; }
+.total { font-size: 14px; }
+.total-value { font-weight: 600; }
+
+.main-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); /* 關鍵：minmax(0,...) */
+}
+@media (min-width: 1024px) {
+  .main-grid { grid-template-columns: 2fr 1fr; }
+}
+
+.section-title { font-size: 18px; font-weight: 600; margin: 0 0 12px; }
+
+/* 卡片與控件 */
+.card {
+  padding: var(--space-md);
+  border-radius: var(--radius);
+}
+.btn {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius);
+  font-size: 1rem; /* 跟著根字型縮放 */
+}
+.btn:hover { background: #f9fafb; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-block { width: 100%; }
+.btn-primary { font-weight: 600; }
+
+.input { width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 12px; font-size: 14px; background: #fff; }
+.label { display: block; font-size: 14px; margin-bottom: 6px; }
+.form { display: flex; flex-direction: column; gap: 12px; }
+
+/* 文案 */
+.muted { color: #6b7280; font-size: 14px; }
+.hint-success { color: #059669; font-size: 12px; }
+
+/* 商品區 */
+.product-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+@media (min-width: 640px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.product-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.product-name { font-weight: 600; margin: 0 0 2px; }
+.product-price { margin: 0; color: #6b7280; font-size: 14px; }
+
+.product-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; }
+.badge-ok { background: #ecfdf5; color: #047857; }
+.badge-out { background: #f3f4f6; color: #9ca3af; }
+
+/* 購物車 */
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 0; /* 關鍵：允許子元素縮小 */
+}
+.cart > .card {
+  max-height: clamp(260px, 45vh, 520px);
+  overflow: auto;
+}
+.cart .line { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+.cart .line:last-child { border-bottom: none; }
+.line-name { font-weight: 500; }
+.line-price { color: #6b7280; font-size: 12px; }
+
+.line-actions { display: flex; align-items: center; gap: 8px; }
+.qty { width: 64px; text-align: right; }
+
+.summary { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.summary-label { font-size: 14px; }
+.summary-value { font-weight: 600; }
+
+.end { display: flex; justify-content: flex-end; margin-top: 8px; }
+
+.link { background: none; border: none; padding: 0; font-size: 12px; color: #4b5563; cursor: pointer; text-decoration: underline; }
+.link:disabled { opacity: .5; cursor: not-allowed; }
+.link-danger { color: #dc2626; }
+
+
+
+/* 頁尾 */
+.footer { padding-bottom: 40px; font-size: 12px; }
+
+/* layout.css */
+.auth-scope .auth-page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;            /* 垂直置中 */
+  justify-content: center;        /* 水平置中 */
+  padding: clamp(16px, 6vw, 90px);
+  background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+}
+
+.auth-scope .auth-illustration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+.auth-scope .glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* card.css */.auth-scope .auth-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* brand.css */.auth-scope .auth-brand {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.auth-scope .auth-logo {
+  font-size: 48px;
+}
+.auth-scope .auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 8px 0;
+}
+.auth-scope .auth-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* alert.css */.auth-scope .auth-alert {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+/* form.css */.auth-scope .auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-scope .auth-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.auth-scope .auth-input {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.auth-scope .auth-input:focus {
+  border-color: #6366f1;
+}
+.auth-scope .auth-btn {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.auth-scope .auth-btn:hover {
+  background: #4f46e5;
+}
+
+/* switch.css */.auth-scope .auth-switch {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.875rem;
+}
+.auth-scope .auth-link {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+.auth-scope .auth-link:hover {
+  text-decoration: underline;
+}

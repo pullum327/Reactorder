@@ -1,0 +1,34 @@
+# 🛒 React Order System
+
+一個簡單的 **下單系統**，使用 **React (前端)**、**Node.js + Express (後端)**、**MySQL (資料庫)**，並整合 **SendGrid** 於下單後自動寄送訂單確認信給客戶。
+
+## ✨ 功能特色
+- 📦 **商品列表**：從 MySQL 資料庫讀取，動態顯示商品名稱、價格、庫存與圖片  
+- 🛍 **購物車功能**：新增、修改數量、移除商品、清空購物車  
+- 👤 **會員系統**：註冊、登入（JWT Token 驗證）、取得個人資訊  
+- 💌 **訂單寄信**：使用 SendGrid API 寄送訂單確認信到客戶填寫的 Email  
+- 🖥 **響應式設計**：適配各種裝置螢幕  
+- 🔒 **密碼加密儲存**：使用 bcrypt 將使用者密碼加密存入資料庫  
+- 💳 **Stripe支付整合**：支援信用卡付款、貨到付款、銀行轉帳等多種支付方式
+- 📱 **全面響應式**：完美適配桌面、平板、手機等各種設備
+
+## 🚀 新增功能
+
+### Stripe支付系統
+- **信用卡付款**：整合Stripe API，支援安全信用卡支付
+- **多種支付方式**：信用卡、貨到付款、銀行轉帳
+- **響應式支付界面**：優雅的支付流程設計
+- **HKD貨幣支持**：預設使用港幣作為交易貨幣
+
+### 響應式設計優化
+- **多斷點支持**：1200px, 992px, 768px, 480px, 360px
+- **移動端優化**：觸摸友好、滾動優化
+- **橫屏適配**：針對橫屏設備的特殊布局
+
+---
+
+<img width="763" height="916" alt="image" src="https://github.com/user-attachments/assets/99c58cfb-a756-44a7-9311-5a3af131af74" />
+
+<img width="1872" height="936" alt="image" src="https://github.com/user-attachments/assets/d3c15b21-3366-4ec0-9744-7e14fd720b05" />
+<img width="1557" height="614" alt="image" src="https://github.com/user-attachments/assets/12160648-1b61-4d8a-ab95-a8d60fb78001" />
+
