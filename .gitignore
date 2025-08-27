@@ -4,7 +4,6 @@
 .env.development
 .env.test
 .env.production
-.env.backup
 
 # 後端環境變數
 order-backend/.env
@@ -12,23 +11,6 @@ order-backend/.env.local
 order-backend/.env.development
 order-backend/.env.test
 order-backend/.env.production
-order-backend/.env.backup
-
-# 前端環境變數
-order/.env
-order/.env.local
-order/.env.development
-order/.env.test
-order/.env.production
-order/.env.backup
-
-# 敏感資訊檔案
-*.key
-*.pem
-*.p12
-*.pfx
-secrets.json
-config.json
 
 # 前端環境變數
 order/.env
