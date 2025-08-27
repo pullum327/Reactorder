@@ -1,0 +1,186 @@
+# 環境變數檔案
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# 後端環境變數
+order-backend/.env
+order-backend/.env.local
+order-backend/.env.development
+order-backend/.env.test
+order-backend/.env.production
+
+# 前端環境變數
+order/.env
+order/.env.local
+order/.env.development
+order/.env.test
+order/.env.production
+
+# 依賴目錄
+node_modules/
+*/node_modules/
+
+# 日誌檔案
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# 運行時資料
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# 覆蓋率目錄
+lib-cov
+coverage
+*.lcov
+
+# nyc 測試覆蓋率
+.nyc_output
+
+# Grunt 中間儲存
+.grunt
+
+# Bower 依賴目錄
+bower_components
+
+# node-waf 配置
+.lock-wscript
+
+# 編譯後的二進制檔案
+build/Release
+
+# 依賴目錄
+jspm_packages/
+
+# TypeScript 快取
+*.tsbuildinfo
+
+# 可選 npm 快取目錄
+.npm
+
+# 可選 eslint 快取
+.eslintcache
+
+# Microbundle 快取
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# 可選 REPL 歷史
+.node_repl_history
+
+# 輸出的 'npm pack'
+*.tgz
+
+# Yarn 完整性檔案
+.yarn-integrity
+
+# dotenv 環境變數檔案
+.env
+.env.test
+
+# parcel-bundler 快取 (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js 建置輸出
+.next
+
+# Nuxt.js 建置 / 生成輸出
+.nuxt
+dist
+
+# Gatsby 檔案
+.cache/
+public
+
+# Storybook 建置輸出
+.out
+.storybook-out
+
+# 臨時資料夾
+tmp/
+temp/
+
+# 編輯器目錄和檔案
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 作業系統檔案
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 測試覆蓋率
+coverage/
+*.lcov
+
+# 建置輸出
+dist/
+build/
+
+# 快取目錄
+.cache/
+.parcel-cache/
+
+# 本地配置檔案
+config.local.js
+config.local.json
+
+# 資料庫檔案
+*.db
+*.sqlite
+*.sqlite3
+
+# 備份檔案
+*.bak
+*.backup
+*.old
+
+# 壓縮檔案
+*.zip
+*.tar.gz
+*.rar
+
+# 日誌檔案
+logs/
+*.log
+
+# 暫存檔案
+temp/
+tmp/
+
+ 複製此內容到 .env 檔案
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=your_database_user
+DB_PASS=your_database_password
+DB_NAME=your_database_name
+
+JWT_SECRET=your_jwt_secret_key_here_change_me_in_production
+
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_signing_secret
+
+SENDGRID_API_KEY=your_sendgrid_api_key
+FROM_EMAIL=your_verified_sender_email@yourdomain.com
+FROM_NAME=Your Store Name
+
+PORT=4000
+
